@@ -24,6 +24,8 @@ jobs:
 
     - name: Build unitypackage
       run: >
+        mkdir -p /Build
+
         /opt/Unity/Editor/Unity
         -batchmode -nographics -quit -logFile
         -projectPath .
