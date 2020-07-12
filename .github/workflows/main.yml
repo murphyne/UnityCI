@@ -1,0 +1,18 @@
+name: CI
+on: [push]
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: gableroux/unity3d:2018.4.15f1
+    steps:
+    - name: Activate Unity
+      run: >
+        echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
+
+        /opt/Unity/Editor/Unity
+        -batchmode -nographics -quit -logFile
+        -manualLicenseFile /Unity_v2018.x.ulf || true
+
+        rm /Unity_v2018.x.ulf
