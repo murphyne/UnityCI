@@ -31,6 +31,8 @@ jobs:
         -runTests -testPlatform editmode
         -testResults /Build/TestResults-EditMode.xml
 
+        cat /Build/TestResults-EditMode.xml | grep test-run | grep result
+
     - name: Run runtime tests
       run: >
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
@@ -39,6 +41,8 @@ jobs:
         -projectPath .
         -runTests -testPlatform playmode
         -testResults /Build/TestResults-PlayMode.xml
+
+        cat /Build/TestResults-PlayMode.xml | grep test-run | grep result
 
     - name: Build unitypackage
       run: >
