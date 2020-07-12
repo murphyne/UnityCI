@@ -22,6 +22,24 @@ jobs:
 
         rm /Unity_v2018.x.ulf
 
+    - name: Run editor tests
+      run: >
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
+        /opt/Unity/Editor/Unity
+        -batchmode -logFile
+        -projectPath .
+        -runTests -testPlatform editmode
+        -testResults /Build/TestResults-EditMode.xml
+
+    - name: Run runtime tests
+      run: >
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
+        /opt/Unity/Editor/Unity
+        -batchmode -logFile
+        -projectPath .
+        -runTests -testPlatform playmode
+        -testResults /Build/TestResults-PlayMode.xml
+
     - name: Build unitypackage
       run: >
         mkdir -p /Build
