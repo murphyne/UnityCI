@@ -49,6 +49,12 @@ jobs:
 
         exit $UNITY_EXIT_CODE
 
+    - name: Upload editor test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: TestResults-EditMode.xml
+        path: /Build/TestResults-EditMode.xml
+
     - name: Run runtime tests
       shell: sh {0}
       run: >
@@ -75,6 +81,12 @@ jobs:
         fi
 
         exit $UNITY_EXIT_CODE
+
+    - name: Upload runtime test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: TestResults-PlayMode.xml
+        path: /Build/TestResults-PlayMode.xml
 
     - name: Build unitypackage
       run: >
