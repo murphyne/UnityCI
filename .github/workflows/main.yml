@@ -23,6 +23,7 @@ jobs:
         rm /Unity_v2018.x.ulf
 
     - name: Run editor tests
+      shell: sh {0}
       run: >
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
         /opt/Unity/Editor/Unity
@@ -38,6 +39,7 @@ jobs:
         exit $UNITY_EXIT_CODE
 
     - name: Run runtime tests
+      shell: sh {0}
       run: >
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
         /opt/Unity/Editor/Unity
