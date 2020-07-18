@@ -5,7 +5,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: gableroux/unity3d:2018.4.15f1
+    container: gableroux/unity3d:2018.4.15f1-windows
     steps:
     - name: Checkout Project
       uses: actions/checkout@v1
