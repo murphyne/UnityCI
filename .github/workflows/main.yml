@@ -12,6 +12,11 @@ jobs:
       with:
         lfs: true
 
+    - uses: actions/cache@v1.1.0
+      with:
+        path: Library
+        key: Library
+
     - name: Activate Unity
       run: |
         echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
