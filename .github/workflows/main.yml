@@ -104,3 +104,18 @@ jobs:
       with:
         name: ColorHash.unitypackage
         path: /Build/ColorHash.unitypackage
+
+    - name: Build Win64
+      run: >
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
+        /opt/Unity/Editor/Unity
+        -batchmode -quit -logFile
+        -projectPath .
+        -buildTarget Win64
+        -buildWindows64Player /Build/Win64/UnityCI.exe
+
+    - name: Upload Win64
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build-Win64
+        path: /Build/Win64
