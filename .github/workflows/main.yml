@@ -31,7 +31,11 @@ jobs:
         -runTests -testPlatform editmode
         -testResults /Build/TestResults-EditMode.xml
 
+        UNITY_EXIT_CODE=$?
+
         cat /Build/TestResults-EditMode.xml | grep test-run | grep result
+
+        exit $UNITY_EXIT_CODE
 
     - name: Run runtime tests
       run: >
@@ -42,7 +46,11 @@ jobs:
         -runTests -testPlatform playmode
         -testResults /Build/TestResults-PlayMode.xml
 
+        UNITY_EXIT_CODE=$?
+
         cat /Build/TestResults-PlayMode.xml | grep test-run | grep result
+
+        exit $UNITY_EXIT_CODE
 
     - name: Build unitypackage
       run: >
