@@ -13,23 +13,23 @@ jobs:
         lfs: true
 
     - name: Activate Unity
-      run: >
+      run: |
         echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
 
-        /opt/Unity/Editor/Unity
-        -batchmode -nographics -quit -logFile
+        /opt/Unity/Editor/Unity \
+        -batchmode -nographics -quit -logFile \
         -manualLicenseFile /Unity_v2018.x.ulf || true
 
         rm /Unity_v2018.x.ulf
 
     - name: Run editor tests
       shell: sh {0}
-      run: >
-        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
-        /opt/Unity/Editor/Unity
-        -batchmode -logFile
-        -projectPath .
-        -runTests -testPlatform editmode
+      run: |
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+        /opt/Unity/Editor/Unity \
+        -batchmode -logFile \
+        -projectPath . \
+        -runTests -testPlatform editmode \
         -testResults /Build/TestResults-EditMode.xml
 
         UNITY_EXIT_CODE=$?
@@ -57,12 +57,12 @@ jobs:
 
     - name: Run runtime tests
       shell: sh {0}
-      run: >
-        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
-        /opt/Unity/Editor/Unity
-        -batchmode -logFile
-        -projectPath .
-        -runTests -testPlatform playmode
+      run: |
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+        /opt/Unity/Editor/Unity \
+        -batchmode -logFile \
+        -projectPath . \
+        -runTests -testPlatform playmode \
         -testResults /Build/TestResults-PlayMode.xml
 
         UNITY_EXIT_CODE=$?
@@ -89,14 +89,14 @@ jobs:
         path: /Build/TestResults-PlayMode.xml
 
     - name: Build unitypackage
-      run: >
+      run: |
         mkdir -p /Build
 
-        /opt/Unity/Editor/Unity
-        -batchmode -nographics -quit -logFile
-        -projectPath .
-        -exportPackage
-        Assets/Scripts/ColorHash.cs
+        /opt/Unity/Editor/Unity \
+        -batchmode -nographics -quit -logFile \
+        -projectPath . \
+        -exportPackage \
+        Assets/Scripts/ColorHash.cs \
         /Build/ColorHash.unitypackage
 
     - name: Upload unitypackage
@@ -106,12 +106,12 @@ jobs:
         path: /Build/ColorHash.unitypackage
 
     - name: Build Win64
-      run: >
-        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'
-        /opt/Unity/Editor/Unity
-        -batchmode -quit -logFile
-        -projectPath .
-        -buildTarget Win64
+      run: |
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+        /opt/Unity/Editor/Unity \
+        -batchmode -quit -logFile \
+        -projectPath . \
+        -buildTarget Win64 \
         -buildWindows64Player /Build/Win64/UnityCI.exe
 
     - name: Upload Win64
