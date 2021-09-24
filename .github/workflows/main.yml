@@ -156,3 +156,47 @@ jobs:
       with:
         name: Build-Win64
         path: /Build/Win64
+
+  build-android:
+    needs: test
+    name: Build for Android
+    runs-on: ubuntu-latest
+    container: unityci/editor:2018.4.15f1-android-0.9.0
+    steps:
+
+    - name: Checkout Project
+      uses: actions/checkout@v1
+      with:
+        lfs: true
+
+    - name: Restore Library from cache
+      uses: actions/cache@v1.1.0
+      with:
+        path: Library
+        key: Library-android
+
+    - name: Activate Unity
+      run: |
+        echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
+
+        unity-editor \
+        -batchmode -nographics -quit -logFile \
+        -manualLicenseFile /Unity_v2018.x.ulf || true
+
+        rm /Unity_v2018.x.ulf
+
+    - name: Build Android
+      run: |
+        xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+        unity-editor \
+        -batchmode -quit -logFile \
+        -projectPath . \
+        -buildTarget Android \
+        -executeMethod UnityPlayerBuilder.BuildAndroid \
+        -customBuildPath /Build/Android/UnityCI.apk
+
+    - name: Upload Android
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build-Android.apk
+        path: /Build/Android/UnityCI.apk
