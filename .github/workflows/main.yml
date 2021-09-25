@@ -23,7 +23,7 @@ jobs:
       run: |
         echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
 
-        /opt/unity/Editor/Unity \
+        unity-editor \
         -batchmode -nographics -quit -logFile \
         -manualLicenseFile /Unity_v2018.x.ulf || true
 
@@ -33,7 +33,7 @@ jobs:
       shell: sh {0}
       run: |
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
-        /opt/unity/Editor/Unity \
+        unity-editor \
         -batchmode -logFile \
         -projectPath . \
         -runTests -testPlatform editmode \
@@ -66,7 +66,7 @@ jobs:
       shell: sh {0}
       run: |
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
-        /opt/unity/Editor/Unity \
+        unity-editor \
         -batchmode -logFile \
         -projectPath . \
         -runTests -testPlatform playmode \
@@ -99,7 +99,7 @@ jobs:
       run: |
         mkdir -p /Build
 
-        /opt/unity/Editor/Unity \
+        unity-editor \
         -batchmode -nographics -quit -logFile \
         -projectPath . \
         -exportPackage \
@@ -115,7 +115,7 @@ jobs:
     - name: Build Win64
       run: |
         xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
-        /opt/unity/Editor/Unity \
+        unity-editor \
         -batchmode -quit -logFile \
         -projectPath . \
         -buildTarget Win64 \
