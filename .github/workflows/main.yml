@@ -69,11 +69,11 @@ jobs:
         name: TestResults-${{ matrix.testMode }}.xml
         path: /Build/TestResults-${{ matrix.testMode }}.xml
 
-  build:
+  build-unitypackage:
     needs: test
-    name: Build
+    name: Build unitypackage
     runs-on: ubuntu-latest
-    container: unityci/editor:2018.4.15f1-windows-mono-0.9.0
+    container: unityci/editor:2018.4.15f1-base-0.9.0
     steps:
 
     - name: Checkout Project
@@ -85,7 +85,7 @@ jobs:
       uses: actions/cache@v1.1.0
       with:
         path: Library
-        key: Library-windows
+        key: Library-base
 
     - name: Activate Unity
       run: |
@@ -113,6 +113,34 @@ jobs:
       with:
         name: ColorHash.unitypackage
         path: /Build/ColorHash.unitypackage
+
+  build-windows:
+    needs: test
+    name: Build for Windows
+    runs-on: ubuntu-latest
+    container: unityci/editor:2018.4.15f1-windows-mono-0.9.0
+    steps:
+
+    - name: Checkout Project
+      uses: actions/checkout@v1
+      with:
+        lfs: true
+
+    - name: Restore Library from cache
+      uses: actions/cache@v1.1.0
+      with:
+        path: Library
+        key: Library-windows
+
+    - name: Activate Unity
+      run: |
+        echo "$UNITY_LICENSE" > /Unity_v2018.x.ulf
+
+        unity-editor \
+        -batchmode -nographics -quit -logFile \
+        -manualLicenseFile /Unity_v2018.x.ulf || true
+
+        rm /Unity_v2018.x.ulf
 
     - name: Build Win64
       run: |
