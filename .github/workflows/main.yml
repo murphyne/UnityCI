@@ -7,7 +7,7 @@ jobs:
   test:
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
-    container: unityci/editor:2018.4.15f1-base-0.9.0
+    container: unityci/editor:2018.4.15f1-base-0
     strategy:
       matrix:
         testMode:
@@ -73,7 +73,7 @@ jobs:
     needs: test
     name: Build unitypackage
     runs-on: ubuntu-latest
-    container: unityci/editor:2018.4.15f1-base-0.9.0
+    container: unityci/editor:2018.4.15f1-base-0
     steps:
 
     - name: Checkout Project
@@ -118,7 +118,7 @@ jobs:
     needs: test
     name: Build for Windows
     runs-on: ubuntu-latest
-    container: unityci/editor:2018.4.15f1-windows-mono-0.9.0
+    container: unityci/editor:2018.4.15f1-windows-mono-0
     steps:
 
     - name: Checkout Project
@@ -161,7 +161,7 @@ jobs:
     needs: test
     name: Build for Android
     runs-on: ubuntu-latest
-    container: unityci/editor:2018.4.15f1-android-0.9.0
+    container: unityci/editor:2018.4.15f1-android-0
     steps:
 
     - name: Checkout Project
