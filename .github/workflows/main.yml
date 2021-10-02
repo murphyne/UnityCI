@@ -21,7 +21,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: Library
         key: Library-base
@@ -82,7 +82,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: Library
         key: Library-base
@@ -127,7 +127,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: Library
         key: Library-windows
@@ -170,7 +170,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v2
       with:
         path: Library
         key: Library-android
