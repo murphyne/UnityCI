@@ -44,16 +44,16 @@ jobs:
         -batchmode -logFile \
         -projectPath . \
         -runTests -testPlatform ${{ matrix.testMode }} \
-        -testResults /Build/TestResults-${{ matrix.testMode }}.xml
+        -testResults Builds/TestResults-${{ matrix.testMode }}.xml
 
         UNITY_EXIT_CODE=$?
 
         if [ $UNITY_EXIT_CODE -eq 0 ]; then
-          cat /Build/TestResults-${{ matrix.testMode }}.xml | grep test-run  | grep result
+          cat Builds/TestResults-${{ matrix.testMode }}.xml | grep test-run  | grep result
           echo "Run succeeded, no failures occurred"
         elif [ $UNITY_EXIT_CODE -eq 2 ]; then
-          cat /Build/TestResults-${{ matrix.testMode }}.xml | grep test-run  | grep Failed
-          cat /Build/TestResults-${{ matrix.testMode }}.xml | grep test-case | grep Failed
+          cat Builds/TestResults-${{ matrix.testMode }}.xml | grep test-run  | grep Failed
+          cat Builds/TestResults-${{ matrix.testMode }}.xml | grep test-case | grep Failed
           echo "Run succeeded, some tests failed"
         elif [ $UNITY_EXIT_CODE -eq 3 ]; then
           echo "Run failure (other failure)"
@@ -67,7 +67,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: TestResults-${{ matrix.testMode }}.xml
-        path: /Build/TestResults-${{ matrix.testMode }}.xml
+        path: Builds/TestResults-${{ matrix.testMode }}.xml
 
   build-unitypackage:
     needs: test
@@ -99,20 +99,20 @@ jobs:
 
     - name: Build unitypackage
       run: |
-        mkdir -p /Build
+        mkdir -p Builds
 
         unity-editor \
         -batchmode -nographics -quit -logFile \
         -projectPath . \
         -exportPackage \
         Assets/Scripts/ColorHash.cs \
-        /Build/ColorHash.unitypackage
+        Builds/ColorHash.unitypackage
 
     - name: Upload unitypackage
       uses: actions/upload-artifact@v2
       with:
         name: ColorHash.unitypackage
-        path: /Build/ColorHash.unitypackage
+        path: Builds/ColorHash.unitypackage
 
   build-windows:
     needs: test
@@ -149,13 +149,13 @@ jobs:
         -batchmode -quit -logFile \
         -projectPath . \
         -buildTarget Win64 \
-        -buildWindows64Player /Build/Win64/UnityCI.exe
+        -buildWindows64Player Builds/Win64/UnityCI.exe
 
     - name: Upload Win64
       uses: actions/upload-artifact@v2
       with:
         name: Build-Win64
-        path: /Build/Win64
+        path: Builds/Win64
 
   build-android:
     needs: test
@@ -193,10 +193,10 @@ jobs:
         -projectPath . \
         -buildTarget Android \
         -executeMethod UnityPlayerBuilder.BuildAndroid \
-        -customBuildPath /Build/Android/UnityCI.apk
+        -customBuildPath Builds/Android/UnityCI.apk
 
     - name: Upload Android
       uses: actions/upload-artifact@v2
       with:
         name: Build-Android.apk
-        path: /Build/Android/UnityCI.apk
+        path: Builds/Android/UnityCI.apk
