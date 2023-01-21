@@ -15,11 +15,17 @@ public class MaterialColorHash : MonoBehaviour
     private void Update()
     {
         var str = message + Time.time;
-        var rgba = ColorHash.ComputeHashFromString(str);
+        var color = ComputeHashColor(str);
+        _renderer.material.SetColor(_colorProperty, color);
+    }
+
+    private static Color ComputeHashColor(string message)
+    {
+        var rgba = ColorHash.ComputeHashFromString(message);
         var r = (rgba >> 24 & 0xFF) / 256f;
         var g = (rgba >> 16 & 0xFF) / 256f;
         var b = (rgba >>  8 & 0xFF) / 256f;
         var hashColor = new Color(r, g, b);
-        _renderer.material.SetColor(_colorProperty, hashColor);
+        return hashColor;
     }
 }
