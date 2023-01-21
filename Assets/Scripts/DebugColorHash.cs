@@ -7,8 +7,8 @@ public class DebugColorHash : MonoBehaviour
     private void Update()
     {
         var str = message + Time.time;
-        var rgba = ColorHash.ComputeHashFromString(str);
-        var rgb = rgba >> 8 & 0xffffff;
-        Debug.Log($"<color=#{rgb:x6}>{message}</color>");
+        var color = ColorHash.ComputeHashColor(str);
+        var rgb = ColorUtility.ToHtmlStringRGB(color);
+        Debug.Log($"<color=#{rgb}>{message}</color>");
     }
 }
