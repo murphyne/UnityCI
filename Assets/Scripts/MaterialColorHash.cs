@@ -2,8 +2,6 @@
 
 public class MaterialColorHash : MonoBehaviour
 {
-    [SerializeField] private string message = "Hello World";
-
     private readonly int _colorProperty = Shader.PropertyToID("_Color");
     private Renderer _renderer;
 
@@ -14,7 +12,7 @@ public class MaterialColorHash : MonoBehaviour
 
     private void Update()
     {
-        var str = message + Time.time;
+        var str = $"{Time.time}";
         var color = ColorHash.ComputeHashColor(str);
         _renderer.material.SetColor(_colorProperty, color);
     }
