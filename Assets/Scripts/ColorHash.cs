@@ -12,7 +12,7 @@ public static class ColorHash
         return hashColor;
     }
 
-    public static int ComputeHashFromString(string message)
+    private static int ComputeHashFromString(string message)
     {
         var hash = Hash128.Compute(message);
         var hashCode = hash.GetHashCode();
