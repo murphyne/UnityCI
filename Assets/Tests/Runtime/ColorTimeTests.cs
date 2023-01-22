@@ -8,9 +8,13 @@ namespace Tests.Runtime
     {
         private static readonly IEnumerable TestCases = new[]
         {
-            new TestCaseData(0.00f, new Color32(0x80, 0x80, 0x80, 0xff)),
-            new TestCaseData(0.25f, new Color32(0x40, 0x40, 0x40, 0xff)),
-            new TestCaseData(0.50f, new Color32(0x00, 0x00, 0x00, 0xff)),
+            new TestCaseData(0.00f, new Color32(0x80, 0xee, 0x11, 0xff)),
+            new TestCaseData(0.20f, new Color32(0xf9, 0x65, 0x21, 0xff)),
+            new TestCaseData(0.35f, new Color32(0xe7, 0x0b, 0x8d, 0xff)),
+            new TestCaseData(0.50f, new Color32(0x7f, 0x11, 0xee, 0xff)),
+            new TestCaseData(0.65f, new Color32(0x18, 0x72, 0xf4, 0xff)),
+            new TestCaseData(0.80f, new Color32(0x06, 0xde, 0x9a, 0xff)),
+            new TestCaseData(1.00f, new Color32(0x80, 0xee, 0x11, 0xff)),
         };
 
         [Test]
