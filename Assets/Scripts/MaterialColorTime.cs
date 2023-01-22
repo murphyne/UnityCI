@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MaterialColorHash : MonoBehaviour
+public class MaterialColorTime : MonoBehaviour
 {
     private readonly int _colorProperty = Shader.PropertyToID("_Color");
     private Renderer _renderer;
@@ -12,7 +12,7 @@ public class MaterialColorHash : MonoBehaviour
 
     private void Update()
     {
-        var color = ColorHash.ComputeHashColor(Time.time);
+        var color = ColorTime.GetColor(Time.time);
         _renderer.material.SetColor(_colorProperty, color);
     }
 }

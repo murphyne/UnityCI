@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public static class ColorHash
+public static class ColorTime
 {
-    public static Color ComputeHashColor(float realTime)
+    public static Color GetColor(float realTime)
     {
         var cycleTime = realTime % 1f;
 

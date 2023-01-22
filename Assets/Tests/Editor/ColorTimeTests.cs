@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tests.Editor
 {
-    public class ColorHashTests
+    public class ColorTimeTests
     {
         private static readonly IEnumerable TestCases = new[]
         {
@@ -14,12 +14,12 @@ namespace Tests.Editor
         };
 
         [Test]
-        [TestCaseSource(typeof(ColorHashTests), nameof(TestCases))]
-        public void HashCodeTest(float time, Color32 expected)
+        [TestCaseSource(typeof(ColorTimeTests), nameof(TestCases))]
+        public void TestColorTime(float time, Color32 expected)
         {
             TestContext.AddFormatter<Color32>(Color32Formatter);
 
-            Color32 actual = ColorHash.ComputeHashColor(time);
+            Color32 actual = ColorTime.GetColor(time);
 
             Assert.AreEqual(expected, actual);
         }
