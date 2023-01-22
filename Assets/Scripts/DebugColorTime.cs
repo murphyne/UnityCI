@@ -6,7 +6,7 @@ public class DebugColorTime : MonoBehaviour
 
     private void Start()
     {
-        _colorProvider = new ColorTime();
+        _colorProvider = new ColorTime(4f);
     }
 
     private void Update()

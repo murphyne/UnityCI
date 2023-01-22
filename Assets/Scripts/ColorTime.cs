@@ -2,9 +2,16 @@
 
 public class ColorTime
 {
+    private readonly float _cycleDuration;
+
+    public ColorTime(float cycleDuration = 1f)
+    {
+        _cycleDuration = cycleDuration;
+    }
+
     public Color GetColor(float realTime)
     {
-        var cycleTime = realTime % 1f;
+        var cycleTime = realTime / _cycleDuration % 1f;
 
         return SineColor(cycleTime);
     }

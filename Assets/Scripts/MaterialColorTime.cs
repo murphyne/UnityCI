@@ -10,7 +10,7 @@ public class MaterialColorTime : MonoBehaviour
     private void Start()
     {
         _renderer = GetComponent<Renderer>();
-        _colorProvider = new ColorTime();
+        _colorProvider = new ColorTime(4f);
     }
 
     private void Update()
