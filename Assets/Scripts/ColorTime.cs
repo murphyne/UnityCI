@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-public static class ColorTime
+public class ColorTime
 {
-    public static Color GetColor(float realTime)
+    public Color GetColor(float realTime)
     {
         var cycleTime = realTime % 1f;
 
         return SineColor(cycleTime);
     }
 
-    private static Color SineColor(float t)
+    private Color SineColor(float t)
     {
         var t2Pi = t * 2 * Mathf.PI;
         var cos = Mathf.Cos(t2Pi) * 0.5f + 0.5f;

@@ -17,9 +17,10 @@ namespace Tests.Runtime
         [TestCaseSource(typeof(ColorTimeTests), nameof(TestCases))]
         public void TestColorTime(float time, Color32 expected)
         {
+            var colorProvider = new ColorTime();
             TestContext.AddFormatter<Color32>(Color32Formatter);
 
-            Color32 actual = ColorTime.GetColor(time);
+            Color32 actual = colorProvider.GetColor(time);
 
             Assert.AreEqual(expected, actual);
         }

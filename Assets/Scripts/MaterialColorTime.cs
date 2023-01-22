@@ -3,16 +3,19 @@
 public class MaterialColorTime : MonoBehaviour
 {
     private readonly int _colorProperty = Shader.PropertyToID("_Color");
+
     private Renderer _renderer;
+    private ColorTime _colorProvider;
 
     private void Start()
     {
         _renderer = GetComponent<Renderer>();
+        _colorProvider = new ColorTime();
     }
 
     private void Update()
     {
-        var color = ColorTime.GetColor(Time.time);
+        var color = _colorProvider.GetColor(Time.time);
         _renderer.material.SetColor(_colorProperty, color);
     }
 }
