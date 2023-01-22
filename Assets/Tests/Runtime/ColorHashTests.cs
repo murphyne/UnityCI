@@ -8,18 +8,18 @@ namespace Tests.Runtime
     {
         private static readonly IEnumerable TestCases = new[]
         {
-            new TestCaseData("Hello World", new Color32(0x02, 0x64, 0xad, 0xff)),
-            new TestCaseData("Hello Superman", new Color32(0xb2, 0x07, 0x86, 0xff)),
-            new TestCaseData("Hello Batman", new Color32(0x8e, 0x9e, 0x89, 0xff)),
+            new TestCaseData(0.00f, new Color32(0x80, 0x80, 0x80, 0xff)),
+            new TestCaseData(0.25f, new Color32(0x40, 0x40, 0x40, 0xff)),
+            new TestCaseData(0.50f, new Color32(0x00, 0x00, 0x00, 0xff)),
         };
 
         [Test]
         [TestCaseSource(typeof(ColorHashTests), nameof(TestCases))]
-        public void HashCodeTest(string message, Color32 expected)
+        public void HashCodeTest(float time, Color32 expected)
         {
             TestContext.AddFormatter<Color32>(Color32Formatter);
 
-            Color32 actual = ColorHash.ComputeHashColor(message);
+            Color32 actual = ColorHash.ComputeHashColor(time);
 
             Assert.AreEqual(expected, actual);
         }

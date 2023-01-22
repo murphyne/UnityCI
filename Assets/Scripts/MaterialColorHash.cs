@@ -12,8 +12,7 @@ public class MaterialColorHash : MonoBehaviour
 
     private void Update()
     {
-        var str = $"{Time.time}";
-        var color = ColorHash.ComputeHashColor(str);
+        var color = ColorHash.ComputeHashColor(Time.time);
         _renderer.material.SetColor(_colorProperty, color);
     }
 }
