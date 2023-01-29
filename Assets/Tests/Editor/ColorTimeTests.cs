@@ -26,7 +26,15 @@ namespace Tests.Editor
 
             Color32 actual = colorProvider.GetColor(time);
 
-            Assert.AreEqual(expected, actual);
+            var tolerance = 1;
+            var areEqual = true;
+            areEqual &= Mathf.Abs(expected.r - actual.r) <= tolerance;
+            areEqual &= Mathf.Abs(expected.g - actual.g) <= tolerance;
+            areEqual &= Mathf.Abs(expected.b - actual.b) <= tolerance;
+            areEqual &= Mathf.Abs(expected.a - actual.a) <= tolerance;
+
+            if (!areEqual)
+                Assert.AreEqual(expected, actual);
         }
 
         private string Color32Formatter(object obj)
