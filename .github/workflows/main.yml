@@ -21,7 +21,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: Library
         key: Library-base
@@ -64,7 +64,7 @@ jobs:
         exit $UNITY_EXIT_CODE
 
     - name: Upload ${{ matrix.testMode }} test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: TestResults-${{ matrix.testMode }}.xml
         path: Builds/TestResults-${{ matrix.testMode }}.xml
@@ -82,7 +82,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: Library
         key: Library-windows
@@ -107,7 +107,7 @@ jobs:
         -buildWindows64Player Builds/Win64/UnityCI.exe
 
     - name: Upload Win64
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Build-Win64
         path: Builds/Win64
@@ -125,7 +125,7 @@ jobs:
         lfs: true
 
     - name: Restore Library from cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: Library
         key: Library-android
@@ -151,7 +151,7 @@ jobs:
         -customBuildPath Builds/Android/UnityCI.apk
 
     - name: Upload Android
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Build-Android.apk
         path: Builds/Android/UnityCI.apk
