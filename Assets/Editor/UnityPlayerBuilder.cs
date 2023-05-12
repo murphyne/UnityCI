@@ -19,7 +19,9 @@ public static class UnityPlayerBuilder
     private static void BuildAndroid()
     {
         var argIndex = CommandLineHelpers.GetArgIndex("-customBuildPath");
-        var buildPath = CommandLineHelpers.GetArgValue(argIndex + 1);
+        var buildPath = argIndex == -1
+            ? "Builds/Android/UnityCI.apk"
+            : CommandLineHelpers.GetArgValue(argIndex + 1);
 
         var buildPlayerOptions = new BuildPlayerOptions()
         {
