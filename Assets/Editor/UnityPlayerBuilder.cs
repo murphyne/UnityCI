@@ -16,6 +16,7 @@ public static class UnityPlayerBuilder
         }
     }
 
+    [MenuItem("Build/Build Android")]
     private static void BuildAndroid()
     {
         var argIndex = CommandLineHelpers.GetArgIndex("-customBuildPath");
