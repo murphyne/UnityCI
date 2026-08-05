@@ -9,3 +9,4 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: e846ca8dfebd0dd469a3d508815b5ee7
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
