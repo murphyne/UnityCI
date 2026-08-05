@@ -68,6 +68,7 @@ jobs:
       with:
         name: TestResults-${{ matrix.testMode }}.xml
         path: Builds/TestResults-${{ matrix.testMode }}.xml
+        archive: false
 
   build-windows:
     needs: test
@@ -155,3 +156,4 @@ jobs:
       with:
         name: Build-Android.apk
         path: Builds/Android/UnityCI.apk
+        archive: false
