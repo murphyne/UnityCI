@@ -149,11 +149,11 @@ jobs:
         -projectPath . \
         -buildTarget Android \
         -executeMethod UnityPlayerBuilder.BuildAndroid \
-        -customBuildPath Builds/Android/UnityCI.apk
+        -customBuildPath Builds/Android/Build-Android.apk
 
     - name: Upload Android to artifacts
       uses: actions/upload-artifact@v7
       with:
         name: Build-Android.apk
-        path: Builds/Android/UnityCI.apk
+        path: Builds/Android/Build-Android.apk
         archive: false
